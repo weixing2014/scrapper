@@ -16,6 +16,27 @@ exports.scrape = functions
       res.type("html").send(`<br>${price}</br>`);
     });
 
+async function sendEmail(currentPrice) {
+  await admin.firestore().collection('emails').add({
+    from: 'weixing1985@gmail.com',
+    to: 'xing.wei@airbnb.com',
+    headers: {
+      headerKey: 'headerValue',
+    },
+    message: {
+      subject: 'Your Amazon item just had a new price!',
+      text: `The new price is ${currentPrice}`,
+    },
+  })
+}
+
+async function sendMsg(currentPrice) {
+  await admin.firestore().collection('messages').add({
+    to: '+15125548344',
+    body: `Your Amazon item just had a new price $${currentPrice}!`
+  });
+}
+
 const findPrice = async () => {
   const url = "https://www.amazon.com/LG-34UC88-B-34-Inch-21-UltraWide/dp/B07DPXJZJ9";
 
@@ -45,6 +66,8 @@ const findPrice = async () => {
   });
   await browser.close();
   await db.collection("test").add({price: currentPrice, time: Date.now()});
+  // await sendEmail(currentPrice);
+  // await sendMsg(currentPrice);
 
   return currentPrice;
 };

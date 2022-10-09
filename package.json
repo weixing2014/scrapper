@@ -1,0 +1,19 @@
+{
+  "name": "scrapper",
+  "version": "1.0.0",
+  "description": "firebase scrpper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weixing2014/scrapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weixing2014/scrapper/issues"
+  },
+  "homepage": "https://github.com/weixing2014/scrapper#readme"
+}
